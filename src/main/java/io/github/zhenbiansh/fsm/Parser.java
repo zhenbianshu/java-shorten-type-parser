@@ -42,5 +42,6 @@ public class Parser {
         System.out.println(Parser.parseToFullType("MTDM"));
         System.out.println(Parser.parseToFullType("MTLDLM"));
         System.out.println(Parser.parseToFullType("LMTDML"));
+        System.out.println(Parser.parseToFullType("LLTLL"));
     }
 }
