@@ -1,7 +1,7 @@
 package io.github.zhenbiansh.fsm;
 
 import io.github.zhenbiansh.fsm.event.Event;
-import io.github.zhenbiansh.fsm.event.handler.*;
+import io.github.zhenbiansh.fsm.handler.*;
 import io.github.zhenbiansh.fsm.state.State;
 
 import java.text.StringCharacterIterator;

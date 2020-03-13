@@ -1,4 +1,5 @@
-package io.github.zhenbiansh.fsm.event.handler;
+package io.github.zhenbiansh.fsm.handler;
+
 
 import io.github.zhenbiansh.fsm.event.Event;
 import io.github.zhenbiansh.fsm.state.State;
@@ -9,7 +10,7 @@ import java.util.Stack;
  * @author zbs
  * @date 2020/3/10
  */
-public class MapStartHandler implements StateHandler {
+public class ListStartHandler implements StateHandler {
     @Override
     public void handle(Event event, Stack<State> states, StringBuilder result) {
         result.append("<");
@@ -27,7 +28,7 @@ public class MapStartHandler implements StateHandler {
                 break;
             case WRAPPED_ELE:
                 states.pop();
-                states.push(State.MAP_LEFT);
+                states.push(State.LIST_ELE);
                 break;
             case PRIMITIVE_ELE:
                 throw new IllegalStateException("unexpected primitive char '" + event.getCharacter() + "' at position " + event.getIndex());

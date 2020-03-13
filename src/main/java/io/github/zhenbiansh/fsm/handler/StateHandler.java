@@ -1,4 +1,4 @@
-package io.github.zhenbiansh.fsm.event.handler;
+package io.github.zhenbiansh.fsm.handler;
 
 import io.github.zhenbiansh.fsm.event.Event;
 import io.github.zhenbiansh.fsm.state.State;
