@@ -1,22 +1,12 @@
 package io.github.zhenbiansh.fsm.state;
 
-import io.github.zhenbiansh.fsm.event.Event;
-
-import java.util.Stack;
-
 /**
  * @author zbs
- * @date 2020/3/10
+ * @date 2020/3/13
  */
-public interface State {
+public enum State {
     /**
-     * 各状态
-     *
-     * @param event
-     * @param states
-     * @param result
-     * @return
-     * @throws IllegalStateException
+     * 解析状态
      */
-    void onEvent(Event event, Stack<State> states, StringBuilder result);
+    START, SET_START, SET_ELE, LIST_START, LIST_ELE, MAP_START, MAP_LEFT, MAP_RIGHT;
 }

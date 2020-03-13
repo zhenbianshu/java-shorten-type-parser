@@ -1,10 +1,12 @@
 package io.github.zhenbiansh.fsm;
 
 import io.github.zhenbiansh.fsm.event.Event;
-import io.github.zhenbiansh.fsm.state.Start;
+import io.github.zhenbiansh.fsm.event.handler.*;
 import io.github.zhenbiansh.fsm.state.State;
 
 import java.text.StringCharacterIterator;
+import java.util.EnumMap;
+import java.util.Map;
 import java.util.Stack;
 
 /**
@@ -12,13 +14,25 @@ import java.util.Stack;
  * @date 2020/3/10
  */
 public class Parser {
+    private static Map<State, StateHandler> STATE_TO_HANDLER_MAPPING = new EnumMap<>(State.class);
+
+    static {
+        STATE_TO_HANDLER_MAPPING.put(State.START, new StartHandler());
+        STATE_TO_HANDLER_MAPPING.put(State.LIST_START, new ListStartHandler());
+        STATE_TO_HANDLER_MAPPING.put(State.LIST_ELE, new ListEleHandler());
+        STATE_TO_HANDLER_MAPPING.put(State.SET_START, new SetStartHandler());
+        STATE_TO_HANDLER_MAPPING.put(State.SET_ELE, new SetEleHandler());
+        STATE_TO_HANDLER_MAPPING.put(State.MAP_START, new MapStartHandler());
+        STATE_TO_HANDLER_MAPPING.put(State.MAP_LEFT, new MapLeftHandler());
+        STATE_TO_HANDLER_MAPPING.put(State.MAP_RIGHT, new MapRightHandler());
+    }
+
     public static String parseToFullType(String shortenType) throws IllegalStateException {
         StringBuilder result = new StringBuilder();
         StringCharacterIterator scanner = new StringCharacterIterator(shortenType);
         Stack<State> states = new Stack<>();
-        Start start = new Start();
 
-        states.push(start);
+        states.push(State.START);
 
         for (; ; scanner.next()) {
             char currentChar = scanner.current();
@@ -32,7 +46,8 @@ public class Parser {
             if (event == null) {
                 throw new IllegalStateException("unknown char '" + currentChar + "' at position " + scanner.getIndex());
             }
-            states.peek().onEvent(event, states, result);
+
+            STATE_TO_HANDLER_MAPPING.get(states.peek()).handle(event, states, result);
         }
     }
 
