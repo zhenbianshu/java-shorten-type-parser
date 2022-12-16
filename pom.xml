@@ -12,7 +12,7 @@
         <java.version>1.8</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
-        <springframework.version>5.2.4.RELEASE</springframework.version>
+        <springframework.version>5.2.20.RELEASE</springframework.version>
         <springcloud.version>2.0.2.RELEASE</springcloud.version>
         <commons.version>3.4</commons.version>
         <guava.version>19.0</guava.version>
